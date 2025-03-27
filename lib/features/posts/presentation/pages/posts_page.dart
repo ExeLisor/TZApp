@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tzapp/features/posts/domain/entities/post.dart';
 import 'package:tzapp/features/posts/presentation/bloc/posts_bloc.dart';
 import 'package:tzapp/features/posts/presentation/widgets/posts_list.dart';
 
+@RoutePage()
 class PostsPage extends StatelessWidget {
   const PostsPage({super.key});
 
