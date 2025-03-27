@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tzapp/core/services/service_locator.dart';
 
-void main() {
+void main() async {
+  await setupLocator();
   runApp(const MainApp());
 }
 
