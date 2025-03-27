@@ -8,6 +8,8 @@ import 'package:tzapp/features/posts/data/services/post_api_service.dart';
 import 'package:tzapp/features/posts/data/sources/post_local_source.dart';
 import 'package:tzapp/features/posts/data/sources/post_remote_source.dart';
 
+import 'package:tzapp/features/posts/domain/use_cases/get_post_by_id.dart';
+
 import 'package:tzapp/features/posts/domain/use_cases/get_posts.dart';
 import 'package:tzapp/features/posts/presentation/bloc/posts_bloc.dart';
 
@@ -37,4 +39,8 @@ Future<void> setupLocator() async {
   getIt.registerSingleton<GetPosts>(GetPosts(getIt<PostRepositoryImpl>()));
 
   getIt.registerFactory<PostsBloc>(() => PostsBloc(getIt<GetPosts>()));
+
+  getIt.registerSingleton<GetPostById>(
+    GetPostById(getIt<PostRepositoryImpl>()),
+  );
 }

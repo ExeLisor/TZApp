@@ -8,6 +8,7 @@ abstract class PostModel with _$PostModel {
   const factory PostModel({
     required int id,
     required String title,
+    required int userId,
     required String body,
   }) = _PostModel;
 

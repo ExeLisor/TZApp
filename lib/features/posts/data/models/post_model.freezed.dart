@@ -17,6 +17,7 @@ T _$identity<T>(T value) => value;
 mixin _$PostModel {
   int get id;
   String get title;
+  int get userId;
   String get body;
 
   /// Create a copy of PostModel
@@ -36,16 +37,17 @@ mixin _$PostModel {
             other is PostModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.body, body) || other.body == body));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, body);
+  int get hashCode => Object.hash(runtimeType, id, title, userId, body);
 
   @override
   String toString() {
-    return 'PostModel(id: $id, title: $title, body: $body)';
+    return 'PostModel(id: $id, title: $title, userId: $userId, body: $body)';
   }
 }
 
@@ -54,7 +56,7 @@ abstract mixin class $PostModelCopyWith<$Res> {
   factory $PostModelCopyWith(PostModel value, $Res Function(PostModel) _then) =
       _$PostModelCopyWithImpl;
   @useResult
-  $Res call({int id, String title, String body});
+  $Res call({int id, String title, int userId, String body});
 }
 
 /// @nodoc
@@ -71,6 +73,7 @@ class _$PostModelCopyWithImpl<$Res> implements $PostModelCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? userId = null,
     Object? body = null,
   }) {
     return _then(_self.copyWith(
@@ -82,6 +85,10 @@ class _$PostModelCopyWithImpl<$Res> implements $PostModelCopyWith<$Res> {
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
       body: null == body
           ? _self.body
           : body // ignore: cast_nullable_to_non_nullable
@@ -93,7 +100,11 @@ class _$PostModelCopyWithImpl<$Res> implements $PostModelCopyWith<$Res> {
 /// @nodoc
 @JsonSerializable()
 class _PostModel implements PostModel {
-  const _PostModel({required this.id, required this.title, required this.body});
+  const _PostModel(
+      {required this.id,
+      required this.title,
+      required this.userId,
+      required this.body});
   factory _PostModel.fromJson(Map<String, dynamic> json) =>
       _$PostModelFromJson(json);
 
@@ -101,6 +112,8 @@ class _PostModel implements PostModel {
   final int id;
   @override
   final String title;
+  @override
+  final int userId;
   @override
   final String body;
 
@@ -126,16 +139,17 @@ class _PostModel implements PostModel {
             other is _PostModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.body, body) || other.body == body));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, body);
+  int get hashCode => Object.hash(runtimeType, id, title, userId, body);
 
   @override
   String toString() {
-    return 'PostModel(id: $id, title: $title, body: $body)';
+    return 'PostModel(id: $id, title: $title, userId: $userId, body: $body)';
   }
 }
 
@@ -147,7 +161,7 @@ abstract mixin class _$PostModelCopyWith<$Res>
       __$PostModelCopyWithImpl;
   @override
   @useResult
-  $Res call({int id, String title, String body});
+  $Res call({int id, String title, int userId, String body});
 }
 
 /// @nodoc
@@ -164,6 +178,7 @@ class __$PostModelCopyWithImpl<$Res> implements _$PostModelCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? userId = null,
     Object? body = null,
   }) {
     return _then(_PostModel(
@@ -175,6 +190,10 @@ class __$PostModelCopyWithImpl<$Res> implements _$PostModelCopyWith<$Res> {
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
       body: null == body
           ? _self.body
           : body // ignore: cast_nullable_to_non_nullable

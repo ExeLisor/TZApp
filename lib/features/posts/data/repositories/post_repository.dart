@@ -34,6 +34,23 @@ class PostRepositoryImpl implements PostRepository {
   }
 
   @override
+  Future<Post> getPostById(int id) async {
+    try {
+      final model = await remoteSource.getPostById(id);
+      final post = _convertToEntity(model);
+
+      return post;
+    } catch (e) {
+      final cachedPosts = await getCachedPosts();
+      final post = cachedPosts.firstWhere(
+        (p) => p.id == id,
+        orElse: () => throw Exception('Post not found in cache'),
+      );
+      return post;
+    }
+  }
+
+  @override
   Future<List<Post>> getCachedPosts() async {
     final models = localSource.getCachedPosts();
     if (models == null) return [];
@@ -43,6 +60,7 @@ class PostRepositoryImpl implements PostRepository {
   Post _convertToEntity(PostModel model) {
     return Post(
       id: model.id,
+      userId: model.userId,
       title: model.title,
       body: model.body,
     );
@@ -51,6 +69,7 @@ class PostRepositoryImpl implements PostRepository {
   PostModel _convertToModel(Post post) {
     return PostModel(
       id: post.id,
+      userId: post.userId,
       title: post.title,
       body: post.body,
     );

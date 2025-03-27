@@ -4,4 +4,5 @@ abstract class PostRepository {
   Future<List<Post>> getPosts();
   Future<void> cachePosts(List<Post> posts);
   Future<List<Post>> getCachedPosts();
+  Future<Post> getPostById(int id);
 }
