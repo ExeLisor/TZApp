@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:tzapp/core/routes/app_router.dart';
 import 'package:tzapp/features/posts/domain/entities/post.dart';
 
 class PostTileWidget extends StatelessWidget {
@@ -17,7 +19,7 @@ class PostTileWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
-        onTap: onTap,
+        onTap: () => context.router.push(PostDetailRoute(postId: post.id)),
         child: Container(
           decoration: PostTileDecorations.containerDecoration(context),
           padding: const EdgeInsets.all(16),

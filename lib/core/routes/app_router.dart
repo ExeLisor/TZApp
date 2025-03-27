@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+import 'package:tzapp/features/posts/presentation/pages/post_details_page.dart';
 import 'package:tzapp/features/posts/presentation/pages/posts_page.dart';
 
 part 'app_router.gr.dart';
@@ -11,6 +13,10 @@ class AppRouter extends RootStackRouter {
           path: '/',
           page: PostsRoute.page,
           initial: true,
+        ),
+        AutoRoute(
+          path: '/posts/:postId',
+          page: PostDetailRoute.page,
         ),
       ];
 }

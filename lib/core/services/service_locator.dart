@@ -11,6 +11,7 @@ import 'package:tzapp/features/posts/data/sources/post_remote_source.dart';
 import 'package:tzapp/features/posts/domain/use_cases/get_post_by_id.dart';
 
 import 'package:tzapp/features/posts/domain/use_cases/get_posts.dart';
+import 'package:tzapp/features/posts/presentation/bloc/post_detail_bloc.dart';
 import 'package:tzapp/features/posts/presentation/bloc/posts_bloc.dart';
 
 final getIt = GetIt.instance;
@@ -38,9 +39,13 @@ Future<void> setupLocator() async {
 
   getIt.registerSingleton<GetPosts>(GetPosts(getIt<PostRepositoryImpl>()));
 
-  getIt.registerFactory<PostsBloc>(() => PostsBloc(getIt<GetPosts>()));
-
   getIt.registerSingleton<GetPostById>(
     GetPostById(getIt<PostRepositoryImpl>()),
+  );
+
+  //blocs
+  getIt.registerFactory<PostsBloc>(() => PostsBloc(getIt<GetPosts>()));
+  getIt.registerFactory<PostDetailBloc>(
+    () => PostDetailBloc(getPostById: getIt<GetPostById>()),
   );
 }
