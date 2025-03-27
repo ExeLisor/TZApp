@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tzapp/core/services/service_locator.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await setupLocator();
   runApp(const MainApp());
 }

@@ -7,11 +7,11 @@ class PostRemoteDataSource {
 
   PostRemoteDataSource(this.apiService);
 
-  Future<List<PostModel>> fetchPosts() async {
+  Future<List<PostModel>> getPosts() async {
     return await apiService.getPosts();
   }
 
-  Future<PostModel> fetchPostById(int id) async {
+  Future<PostModel> getPostById(int id) async {
     return await apiService.getPostById(id);
   }
 }

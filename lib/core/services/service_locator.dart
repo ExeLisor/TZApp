@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
+
+import 'package:tzapp/features/posts/data/services/hive_service.dart';
 
 import 'package:tzapp/features/posts/data/services/post_api_service.dart';
 import 'package:tzapp/features/posts/data/sources/post_local_source.dart';
@@ -11,12 +11,10 @@ final getIt = GetIt.instance;
 
 Future<void> setupLocator() async {
   // Hive
-  final dir = await getApplicationDocumentsDirectory();
-  Hive.init(dir.path);
-  final postLocalDataSource = PostLocalDataSource();
-  await postLocalDataSource.init();
+  final hiveService = HiveService();
+  await hiveService.init();
+  getIt.registerSingleton(hiveService);
 
-  // Dio с интерцепторами
   final dio = Dio()
     ..interceptors.add(LogInterceptor(
       request: true,
@@ -25,11 +23,9 @@ Future<void> setupLocator() async {
     ));
 
   // Retrofit
-  final postApiService = PostApiService(dio);
+  getIt.registerSingleton(PostApiService(dio));
 
   // Регистрация зависимостей
-  getIt.registerSingleton<PostLocalDataSource>(postLocalDataSource);
-  getIt.registerSingleton<PostApiService>(postApiService);
-  getIt.registerSingleton<PostRemoteDataSource>(
-      PostRemoteDataSource(getIt<PostApiService>()));
+  getIt.registerSingleton(PostRemoteDataSource(getIt<PostApiService>()));
+  getIt.registerSingleton(PostLocalDataSource(getIt<HiveService>()));
 }
