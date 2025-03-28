@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:tzapp/export.dart';
 
 LinearGradient buildShimmerGradient(BuildContext context) {
   final isDark = Theme.of(context).brightness == Brightness.dark;

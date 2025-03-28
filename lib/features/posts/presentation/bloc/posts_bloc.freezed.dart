@@ -99,13 +99,13 @@ class $PostsStateCopyWith<$Res> {
 
 /// @nodoc
 
-class Initial implements PostsState {
-  const Initial();
+class PostInitial implements PostsState {
+  const PostInitial();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Initial);
+        (other.runtimeType == runtimeType && other is PostInitial);
   }
 
   @override
@@ -119,13 +119,13 @@ class Initial implements PostsState {
 
 /// @nodoc
 
-class Loading implements PostsState {
-  const Loading();
+class PostLoading implements PostsState {
+  const PostLoading();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Loading);
+        (other.runtimeType == runtimeType && other is PostLoading);
   }
 
   @override
@@ -139,8 +139,8 @@ class Loading implements PostsState {
 
 /// @nodoc
 
-class Loaded implements PostsState {
-  const Loaded(final List<Post> posts) : _posts = posts;
+class PostLoaded implements PostsState {
+  const PostLoaded(final List<Post> posts) : _posts = posts;
 
   final List<Post> _posts;
   List<Post> get posts {
@@ -153,14 +153,14 @@ class Loaded implements PostsState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $LoadedCopyWith<Loaded> get copyWith =>
-      _$LoadedCopyWithImpl<Loaded>(this, _$identity);
+  $PostLoadedCopyWith<PostLoaded> get copyWith =>
+      _$PostLoadedCopyWithImpl<PostLoaded>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Loaded &&
+            other is PostLoaded &&
             const DeepCollectionEquality().equals(other._posts, _posts));
   }
 
@@ -175,20 +175,21 @@ class Loaded implements PostsState {
 }
 
 /// @nodoc
-abstract mixin class $LoadedCopyWith<$Res>
+abstract mixin class $PostLoadedCopyWith<$Res>
     implements $PostsStateCopyWith<$Res> {
-  factory $LoadedCopyWith(Loaded value, $Res Function(Loaded) _then) =
-      _$LoadedCopyWithImpl;
+  factory $PostLoadedCopyWith(
+          PostLoaded value, $Res Function(PostLoaded) _then) =
+      _$PostLoadedCopyWithImpl;
   @useResult
   $Res call({List<Post> posts});
 }
 
 /// @nodoc
-class _$LoadedCopyWithImpl<$Res> implements $LoadedCopyWith<$Res> {
-  _$LoadedCopyWithImpl(this._self, this._then);
+class _$PostLoadedCopyWithImpl<$Res> implements $PostLoadedCopyWith<$Res> {
+  _$PostLoadedCopyWithImpl(this._self, this._then);
 
-  final Loaded _self;
-  final $Res Function(Loaded) _then;
+  final PostLoaded _self;
+  final $Res Function(PostLoaded) _then;
 
   /// Create a copy of PostsState
   /// with the given fields replaced by the non-null parameter values.
@@ -196,7 +197,7 @@ class _$LoadedCopyWithImpl<$Res> implements $LoadedCopyWith<$Res> {
   $Res call({
     Object? posts = null,
   }) {
-    return _then(Loaded(
+    return _then(PostLoaded(
       null == posts
           ? _self._posts
           : posts // ignore: cast_nullable_to_non_nullable
@@ -207,8 +208,8 @@ class _$LoadedCopyWithImpl<$Res> implements $LoadedCopyWith<$Res> {
 
 /// @nodoc
 
-class Error implements PostsState {
-  const Error(this.message);
+class PostError implements PostsState {
+  const PostError(this.message);
 
   final String message;
 
@@ -216,14 +217,14 @@ class Error implements PostsState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $ErrorCopyWith<Error> get copyWith =>
-      _$ErrorCopyWithImpl<Error>(this, _$identity);
+  $PostErrorCopyWith<PostError> get copyWith =>
+      _$PostErrorCopyWithImpl<PostError>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Error &&
+            other is PostError &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -237,19 +238,20 @@ class Error implements PostsState {
 }
 
 /// @nodoc
-abstract mixin class $ErrorCopyWith<$Res> implements $PostsStateCopyWith<$Res> {
-  factory $ErrorCopyWith(Error value, $Res Function(Error) _then) =
-      _$ErrorCopyWithImpl;
+abstract mixin class $PostErrorCopyWith<$Res>
+    implements $PostsStateCopyWith<$Res> {
+  factory $PostErrorCopyWith(PostError value, $Res Function(PostError) _then) =
+      _$PostErrorCopyWithImpl;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class _$ErrorCopyWithImpl<$Res> implements $ErrorCopyWith<$Res> {
-  _$ErrorCopyWithImpl(this._self, this._then);
+class _$PostErrorCopyWithImpl<$Res> implements $PostErrorCopyWith<$Res> {
+  _$PostErrorCopyWithImpl(this._self, this._then);
 
-  final Error _self;
-  final $Res Function(Error) _then;
+  final PostError _self;
+  final $Res Function(PostError) _then;
 
   /// Create a copy of PostsState
   /// with the given fields replaced by the non-null parameter values.
@@ -257,7 +259,7 @@ class _$ErrorCopyWithImpl<$Res> implements $ErrorCopyWith<$Res> {
   $Res call({
     Object? message = null,
   }) {
-    return _then(Error(
+    return _then(PostError(
       null == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -268,13 +270,13 @@ class _$ErrorCopyWithImpl<$Res> implements $ErrorCopyWith<$Res> {
 
 /// @nodoc
 
-class Empty implements PostsState {
-  const Empty();
+class PostEmpty implements PostsState {
+  const PostEmpty();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Empty);
+        (other.runtimeType == runtimeType && other is PostEmpty);
   }
 
   @override

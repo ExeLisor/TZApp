@@ -35,16 +35,16 @@ class PostsPage extends StatelessWidget {
 
   Widget _buildContent(PostsState state, BuildContext context) {
     switch (state.runtimeType) {
-      case const (Initial):
+      case const (PostInitial):
         context.read<PostsBloc>().add(const PostsEvent.fetch());
         return _loading(context);
-      case const (Loading):
+      case const (PostLoading):
         return _loading(context);
-      case const (Loaded):
-        return _loaded(state as Loaded);
+      case const (PostLoaded):
+        return _loaded(state as PostLoaded);
       case const (Error):
-        return _error(state as Error, context);
-      case const (Empty):
+        return _error(state as PostError, context);
+      case const (PostEmpty):
         return _empty(context);
       default:
         return _loading(context);
@@ -62,7 +62,7 @@ class PostsPage extends StatelessWidget {
     );
   }
 
-  Widget _loaded(Loaded state) {
+  Widget _loaded(PostLoaded state) {
     return AnimatedOpacity(
       opacity: 1.0,
       duration: const Duration(milliseconds: 300),
@@ -70,7 +70,7 @@ class PostsPage extends StatelessWidget {
     );
   }
 
-  Widget _error(Error state, BuildContext context) {
+  Widget _error(PostError state, BuildContext context) {
     return AnimatedOpacity(
       opacity: 1.0,
       duration: const Duration(milliseconds: 300),

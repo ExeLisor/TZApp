@@ -1,7 +1,4 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:tzapp/features/posts/presentation/pages/post_details_page.dart';
-import 'package:tzapp/features/posts/presentation/pages/posts_page.dart';
+import 'package:tzapp/export.dart';
 
 part 'app_router.gr.dart';
 

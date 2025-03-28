@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tzapp/core/routes/app_router.dart';
-import 'package:tzapp/core/services/service_locator.dart';
-import 'package:tzapp/features/posts/presentation/bloc/post_detail_bloc.dart';
-
-import 'package:tzapp/features/posts/presentation/bloc/posts_bloc.dart';
-import 'package:tzapp/features/theme/presentation/bloc/theme_bloc.dart';
+import 'package:tzapp/export.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

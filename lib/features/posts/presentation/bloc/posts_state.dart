@@ -2,9 +2,9 @@ part of 'posts_bloc.dart';
 
 @freezed
 class PostsState with _$PostsState {
-  const factory PostsState.initial() = Initial;
-  const factory PostsState.loading() = Loading;
-  const factory PostsState.loaded(List<Post> posts) = Loaded;
-  const factory PostsState.error(String message) = Error;
-  const factory PostsState.empty() = Empty;
+  const factory PostsState.initial() = PostInitial;
+  const factory PostsState.loading() = PostLoading;
+  const factory PostsState.loaded(List<Post> posts) = PostLoaded;
+  const factory PostsState.error(String message) = PostError;
+  const factory PostsState.empty() = PostEmpty;
 }
