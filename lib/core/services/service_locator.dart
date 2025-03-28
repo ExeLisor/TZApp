@@ -28,8 +28,11 @@ Future<void> setupLocator() async {
   getIt.registerSingleton(hiveService);
 
   final dio = Dio()
+    ..options.connectTimeout = const Duration(seconds: 30)
     ..interceptors.add(LogInterceptor(
-      request: true,
+      requestHeader: false,
+      requestBody: false,
+      responseHeader: false,
       error: true,
     ));
 

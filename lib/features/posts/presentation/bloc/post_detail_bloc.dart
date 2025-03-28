@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tzapp/features/posts/domain/entities/post.dart';
 import 'package:tzapp/features/posts/domain/use_cases/get_post_by_id.dart';
@@ -30,6 +31,7 @@ class PostDetailBloc extends Bloc<PostDetailEvent, PostDetailState> {
   Future<void> _fetchPost(int id, Emitter<PostDetailState> emit) async {
     try {
       final post = await getPostById(id);
+
       emit(PostDetailState.loaded(post));
     } catch (e) {
       if (e.toString().contains('not found')) {
