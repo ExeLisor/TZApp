@@ -14,9 +14,10 @@ class AppRouter extends RootStackRouter {
           page: PostsRoute.page,
           initial: true,
         ),
-        AutoRoute(
+        CustomRoute(
           path: '/posts/:postId',
           page: PostDetailRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideBottom,
         ),
       ];
 }
