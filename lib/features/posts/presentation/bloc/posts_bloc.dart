@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tzapp/features/posts/domain/entities/post.dart';
 import 'package:tzapp/features/posts/domain/use_cases/get_posts.dart';
@@ -34,6 +35,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     try {
       emit(const PostsState.loading());
       final posts = await getPosts.call();
+      await Future.delayed(const Duration(milliseconds: 500));
       emit(PostsState.loaded(posts));
     } catch (e) {
       emit(PostsState.error(e.toString()));
