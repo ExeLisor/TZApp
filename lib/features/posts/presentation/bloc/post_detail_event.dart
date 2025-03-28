@@ -6,5 +6,6 @@ class PostDetailEvent with _$PostDetailEvent {
   const factory PostDetailEvent.refresh(int id) = _Refresh;
 
   @override
+  // TODO: implement id
   int get id => throw UnimplementedError();
 }

@@ -13,6 +13,12 @@ import 'package:tzapp/features/posts/domain/use_cases/get_post_by_id.dart';
 import 'package:tzapp/features/posts/domain/use_cases/get_posts.dart';
 import 'package:tzapp/features/posts/presentation/bloc/post_detail_bloc.dart';
 import 'package:tzapp/features/posts/presentation/bloc/posts_bloc.dart';
+import 'package:tzapp/features/theme/data/repositrories/theme_repository.dart';
+import 'package:tzapp/features/theme/data/sources/theme_local_source.dart';
+import 'package:tzapp/features/theme/domain/repositories/theme_repository.dart';
+import 'package:tzapp/features/theme/domain/use_cases/get_theme.dart';
+import 'package:tzapp/features/theme/domain/use_cases/save_theme.dart';
+import 'package:tzapp/features/theme/presentation/bloc/theme_bloc.dart';
 
 final getIt = GetIt.instance;
 
@@ -26,6 +32,24 @@ Future<void> setupLocator() async {
       request: true,
       error: true,
     ));
+
+  final themeDataSource = ThemeLocalDataSource();
+  await themeDataSource.init();
+  getIt.registerSingleton<ThemeLocalDataSource>(themeDataSource);
+
+  getIt.registerSingleton<ThemeRepository>(
+    ThemeRepositoryImpl(getIt<ThemeLocalDataSource>()),
+  );
+
+  getIt.registerSingleton<GetTheme>(GetTheme(getIt<ThemeRepository>()));
+  getIt.registerSingleton<SaveTheme>(SaveTheme(getIt<ThemeRepository>()));
+
+  getIt.registerFactory<ThemeBloc>(
+    () => ThemeBloc(
+      getTheme: getIt<GetTheme>(),
+      saveTheme: getIt<SaveTheme>(),
+    ),
+  );
 
   getIt.registerSingleton(PostApiService(dio));
 

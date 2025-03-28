@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tzapp/features/posts/domain/entities/post.dart';
 import 'package:tzapp/features/posts/presentation/bloc/posts_bloc.dart';
 import 'package:tzapp/features/posts/presentation/widgets/posts_list.dart';
+import 'package:tzapp/features/theme/presentation/widgets/theme_switcher.dart';
 
 @RoutePage()
 class PostsPage extends StatelessWidget {
@@ -38,7 +39,12 @@ class PostsPage extends StatelessWidget {
     );
   }
 
-  AppBar _appBar() => AppBar(title: const Text('Posts'));
+  AppBar _appBar() => AppBar(
+        title: const Text('Posts'),
+        actions: const [
+          ThemeSwitch(),
+        ],
+      );
 
   Widget _postsList(List<Post> posts) => PostsListWidget(posts: posts);
 

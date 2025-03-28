@@ -18,11 +18,11 @@ class PostDetailRoute extends PageRouteInfo<PostDetailRouteArgs> {
     required int postId,
     List<PageRouteInfo>? children,
   }) : super(
-          PostDetailRoute.name,
-          args: PostDetailRouteArgs(key: key, postId: postId),
-          rawPathParams: {'postId': postId},
-          initialChildren: children,
-        );
+         PostDetailRoute.name,
+         args: PostDetailRouteArgs(key: key, postId: postId),
+         rawPathParams: {'postId': postId},
+         initialChildren: children,
+       );
 
   static const String name = 'PostDetailRoute';
 
@@ -55,7 +55,7 @@ class PostDetailRouteArgs {
 /// [PostsPage]
 class PostsRoute extends PageRouteInfo<void> {
   const PostsRoute({List<PageRouteInfo>? children})
-      : super(PostsRoute.name, initialChildren: children);
+    : super(PostsRoute.name, initialChildren: children);
 
   static const String name = 'PostsRoute';
 
